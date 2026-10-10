@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
-    "release_date": { "day": 3, "month": 7, "year": 2026 },
-    "notes": "Initial release"
+    "version": "1.1.0",
+    "release_date": { "day": 10, "month": 10, "year": 2026 },
+    "notes": "BUG FIXES AND UPDATED TEBEX INTEGRATION"
 }
