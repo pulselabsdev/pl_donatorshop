@@ -1,5 +1,7 @@
 {
-    "version": "1.1.0",
+    "version": "1.6.0",
     "release_date": { "day": 10, "month": 10, "year": 2026 },
-    "notes": "BUG FIXES AND UPDATED TEBEX INTEGRATION"
+    "notes":
+        "• Added a new item shop: a ped at the showroom opens a tablet store where players spend coins on inventory items",
+        "• Added anti-exploit protection: server-side checks block, log to Discord and kick players who abuse shop events"
 }
