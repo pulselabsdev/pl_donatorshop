@@ -1,5 +1,5 @@
 {
-    "version": "1.6.0",
+    "version": "1.7.0",
     "release_date": { "day": 13, "month": 10, "year": 2026 },
     "notes":
 
