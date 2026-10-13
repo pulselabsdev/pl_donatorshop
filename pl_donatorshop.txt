@@ -1,7 +1,33 @@
 {
     "version": "1.6.0",
-    "release_date": { "day": 10, "month": 10, "year": 2026 },
+    "release_date": { "day": 13, "month": 10, "year": 2026 },
     "notes":
-        "• Added a new item shop: a ped at the showroom opens a tablet store where players spend coins on inventory items",
-        "• Added anti-exploit protection: server-side checks block, log to Discord and kick players who abuse shop events"
+
+        "Fixed
+        • cd_garage: bought vehicles now save props with `model` (hash), `plate` and `Config.DefaultVehicleProps`. Before, cd_garage couldn't recognise a newly bought car until its data repair ran, and `DefaultVehicleProps` never reached the database.
+        • Tebex baskets: an order with several different packages now pays every package. `tebex_pending` stores one row per transaction + package.
+        • Manual codes: `Config.TebexCodes` codes are now claimed before payout, so the same code can't be paid twice when two players use it at once.
+        
+        ### Changed
+        • Tebex package names now match regardless of capitals and extra spaces.
+        • `/redeem` pays all packages in a transaction at once. Each row is marked redeemed before it's paid.
+        • Test drives use a random plate per drive instead of `TEST`, so mechanic scripts that store wear by plate don't share one record between drivers.
+        
+        ### Added
+        • `server/editable.lua` (not escrowed) with hooks for each server's own setup:
+          • `Editable.GeneratePlate()`
+          • `Editable.BuildVehicleProps()`
+          • `Editable.StoreVehicle()`
+          • `Editable.MatchTebexProduct()`
+          • `Editable.OnUnknownTebexProduct()`
+          • `Editable.OnTestDriveEnded()`
+        • `Config.TestDrivePlateFormat` (default `TD11111`).
+        • A "Unknown Tebex Package" log to the `StaffLog` webhook when Tebex delivers a package that isn't in `Config.TebexListings`.
+        
+        ### Database
+        • `tebex_pending`: the unique key changes from `transaction_id` to `(transaction_id, product_name)`. **This is migrated automatically on start.** `installation.sql` is updated.
+        
+        ### Updating
+        • Replace all files except `config.lua`, then add the new `Config.TestDrivePlateFormat` line to your config.
+        • Requires **pl_bridge 1.2.1** or newer"
 }
